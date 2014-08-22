@@ -25,12 +25,8 @@
 #include <unistd.h>
 #include <GL/glew.h>
 
-//#include <chrono.h>
-//#include <thread.h>
-
+#include "gl_framework.hpp"
 #include "turtle.hpp"
-
-
 
 void turtle_t::reset(void) 
 { 
@@ -66,6 +62,7 @@ void turtle_t::set_dir(const double _dir)
 void turtle_t::set_col(const color_t _col)
 { 
   col=_col; 
+  glColor3f(col.r, col.g, col.b);
 }
 
 void turtle_t::set_col(const double _r, const double _g, const double _b)
@@ -73,7 +70,7 @@ void turtle_t::set_col(const double _r, const double _g, const double _b)
   col.r=_r;
   col.g=_g;
   col.b=_b;
-
+  glColor3f(_r, _g, _b);
 }
 
 void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
@@ -84,7 +81,6 @@ void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
 void turtle_t::scale(const double _s)
 { glLoadIdentity(); 
   glScaled(1/_s,1/_s,1.0d);
-  
 }
 
 void turtle_t::turn_left(const double _angle)    
@@ -167,12 +163,10 @@ while(times>0){
 }
 
 void turtle_t::pause(const double _t)
-{ 
-  //glLoadIdentity(); 
- // glScaled(1/_t,1/_t,1.0d);
- // std::cout<<"hi";
- usleep(1000000);
- 
+{
+  GLFWwindow * win=glfwGetCurrentContext();
+glfwSwapBuffers(win);
+  sleep(_t);
 }
 void turtle_t::exec(turtle_com_t *com)
 {
@@ -250,9 +244,9 @@ void turtle_t::exec(turtle_com_t *com)
     }
    else if ((com->cname==PAUSE)) 
     {
-       turtle_pause_t *pausecom = dynamic_cast<turtle_pause_t*>(com);
-       if(pausecom)
-	 pause(pausecom->t);
+      turtle_pause_t *pausecom = dynamic_cast<turtle_pause_t*>(com);
+      if(pausecom)
+	pause(pausecom->t);
     }
   else
     {
