@@ -1,0 +1,5 @@
+BEGIN
+CLS
+RESET
+B 1
+END
