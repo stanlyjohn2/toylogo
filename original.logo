@@ -1,13 +1,21 @@
 BEGIN
 CLS
 RESET
+
 SCALE 100
+
 REPEAT 6
 REPEAT 36
+
+PAUSE 0.5
+
+dash
 COL 1 0 0
 MF .75
 F 1
 MF .75
+
+star
 COL 1 1 0
 F 5
 L 120
@@ -29,22 +37,35 @@ MF 2.5
 L 90
 MF 5
 R 10
+
 ENDREP
+
+
+hexagon red 2 lines
 COL 1 0 0
 F 50
 R 60
 F 50
 R 60
+
+hexagon green 2 lines
 COL 0 1 0
 F 50
 R 60
 F 50
 R 60
+
+hexagon red 2 lines
 COL 1 0 0
 F 50
 R 60
 F 50
 R 60
 R 60
+
 ENDREP
+
+pause to show the end drawing
+PAUSE 2
+
 END
