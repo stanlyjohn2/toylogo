@@ -106,6 +106,6 @@ void leaffirst(turtle_t &turt, double x)
 void render_drawing(turtle_t &turt)
 {
  
-  star(turt,0.5);
-  //leaffirst(turt,1.0);
+  //star(turt,0.5);
+  leaffirst(turt,1.0);
 }
