@@ -33,21 +33,16 @@ void turtle_t::reset(void)
   dir=0.0;
   pos.x=0.0;
   pos.y=0.0;
-  
 }
-
 void turtle_t::clear(void)
 { 
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 }
 
 void turtle_t::set_pos(const vertex_t _pos)
 { 
-  pos=_pos;
-  
+  pos=_pos; 
 }
-
 void turtle_t::set_pos(const double _x, const double _y)
 { 
   pos.x=_x;
@@ -58,13 +53,11 @@ void turtle_t::set_dir(const double _dir)
 { 
   dir=_dir;
 }
-
 void turtle_t::set_col(const color_t _col)
 { 
   col=_col; 
   glColor3f(col.r, col.g, col.b);
 }
-
 void turtle_t::set_col(const double _r, const double _g, const double _b)
 { 
   col.r=_r;
@@ -77,27 +70,20 @@ void turtle_t::set_bgcol(const double _r, const double _g, const double _b)
 {
   glClearColor(_r,_g,_b,1.0);
  }
-
 void turtle_t::scale(const double _s)
 { glLoadIdentity(); 
   glScaled(1/_s,1/_s,1.0d);
 }
-
 void turtle_t::turn_left(const double _angle)    
 {
- 
    dir=fmod(dir+_angle,360);
-
  }
-
 void turtle_t::turn_right(const double _angle)
 {
   dir=fmod(dir-_angle,360);
   if(dir<0)
     dir=dir+360;
- 
  }
-
 void turtle_t::forward(const double _dist)  
 {
 double new_x,new_y,result;
@@ -111,7 +97,6 @@ new_y=pos.y+(_dist*sin(result));
 pos.x=new_x;
 pos.y=new_y;
 }
-
 void turtle_t::back(const double _dist)   
 { 
 double new_x,new_y,new_angle,result;
@@ -124,8 +109,7 @@ new_y=pos.y+(_dist*sin(result));
   glVertex2f(new_x,new_y);
   glEnd();
 pos.x=new_x;
-pos.y=new_y;
-  
+pos.y=new_y;  
 }
 
 void turtle_t::forward_move(const double _dist)
@@ -146,7 +130,6 @@ pos.y=pos.y+(_dist*sin(result));
   
 }
 
-
 void turtle_t::repeat(const unsigned int &_n, const turtle_com_list_t &_replist)
 {
 turtle_com_list_t::iterator liter1;
@@ -165,8 +148,8 @@ while(times>0){
 void turtle_t::pause(const double _t)
 {
   GLFWwindow * win=glfwGetCurrentContext();
-glfwSwapBuffers(win);
-  sleep(_t);
+  glfwSwapBuffers(win);
+  usleep(_t*1000000);
 }
 void turtle_t::exec(turtle_com_t *com)
 {
@@ -228,7 +211,6 @@ void turtle_t::exec(turtle_com_t *com)
   else if (com->cname==REPEAT)
     {
       turtle_rep_t *repcom = dynamic_cast<turtle_rep_t*>(com);
-
       if (repcom)
 	{
 	  unsigned int times = repcom->times;
@@ -254,4 +236,3 @@ void turtle_t::exec(turtle_com_t *com)
       exit(-1);
     }
 }
-

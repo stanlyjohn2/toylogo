@@ -21,43 +21,7 @@
 
 #include "render_drawing.hpp"
 
-double br=0.5;
-double tr=0.5;
-void triline(turtle_t &turt, double length)
-{
-   if (length <= 0.01)
-   {
-      turt.forward(length);
-   }
-   else
-   {
-     double newlength = length/3.0;
-     triline(turt, newlength);
-     turt.turn_left(60);
-     triline(turt, newlength);
-     turt.turn_right(120);
-     triline(turt, newlength);
-     turt.turn_left(60);
-     triline(turt, newlength);
-   }
-}
-
-//Drawing a Koch Snowflake
-void koch(turtle_t &turt, double x)
-{
-   turt.reset();
-   turt.clear();
-  turt.set_pos(-0.3, 0.5);
-  
-   turt.turn_right(30);
-
-   for (int i = 0; i<3; i++)
-     {
-       triline(turt, x);
-       turt.turn_right(120);
-     }
-}
-
+void leaf(turtle_t &turt, double length);
 void starline(turtle_t &turt, double length)
 {
   double factor;
@@ -116,7 +80,6 @@ turt.backward_move(length+3*factor);
      
 }
 
-//Drawing a Koch Snowflake
 void star(turtle_t &turt, double x)
 {
   int i;
@@ -126,6 +89,7 @@ void star(turtle_t &turt, double x)
   turt.set_pos(0.0, -0.95);
   
    turt.turn_left(90);
+   starline(turt,x);
 }
 
 void leaffirst(turtle_t &turt, double x)
@@ -141,8 +105,7 @@ void leaffirst(turtle_t &turt, double x)
 
 void render_drawing(turtle_t &turt)
 {
- // koch(turt, 1.0);
- // star(turt,0.5);
-  leaffirst(turt,1.0);
-  
+ 
+  star(turt,0.5);
+  //leaffirst(turt,1.0);
 }
